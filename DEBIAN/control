@@ -1,0 +1,11 @@
+Package: matrix-check
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: libc6 (>= 2.34)
+Maintainer: Твое Имя <email@example.com>
+Description: Программа для проверки транспонирования матриц (C++)
+ This package allows to check whether one matrix can be obtained
+ from another by a limited number of transpose operations.
+

@@ -1,0 +1,5 @@
+matrix_check (1.0) stable; urgency=low
+
+  * Initial release: программа на C++ для матриц
+
+ -- Ксения Петрова  15 Jan 2026 00:00:00 +0300
