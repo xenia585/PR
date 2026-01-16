@@ -1,16 +1,32 @@
-APP_NAME = matrix_check
-SRC_FILE = main.cpp
+APP_NAME = matrix
+SRC = matrix.cpp
 BIN_DIR = ../usr/local/bin
 
-all: build
+CXX = g++
+CXXFLAGS = -Wall -Werror -std=c++17
 
-build:
+all: $(APP_NAME)
+
+$(APP_NAME): $(SRC)
 	@echo "Компиляция программы..."
-	@mkdir -p $(BIN_DIR)
-	g++ -std=c++17 -O2 -Wall $(SRC_FILE) -o $(BIN_DIR)/$(APP_NAME)
-	@echo "Компиляция завершена!"
+	$(CXX) $(CXXFLAGS) $^ -o $@
+	mkdir -p $(BIN_DIR)
+	mv $@ $(BIN_DIR)/
+	@echo "Compilation complete"
 
 clean:
 	@echo "Очистка..."
-	@rm -f $(BIN_DIR)/$(APP_NAME)
+	rm -f $(BIN_DIR)/$(APP_NAME)
+
+help:
+	@echo "Доступные цели:"
+	@echo "  all        — сборка программы"
+	@echo "  matrix     — компиляция"
+	@echo "  clean      — очистка"
+	@echo "  help       — справка"
+
+.PHONY: all clean help
+
+
+
 
