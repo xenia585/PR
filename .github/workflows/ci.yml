@@ -7,17 +7,17 @@ on:
     branches: ["main"]
 
 jobs:
-  build-test-package:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install build tools
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential dpkg-dev fakeroot
+          sudo apt-get install -y g++
 
       - name: Build program
         run: |
@@ -31,14 +31,14 @@ jobs:
           chmod +x testing.sh
           ./testing.sh
 
-      - name: Build deb package
+      - name: Package deb
         run: |
           set -eux
           dpkg-deb --build . PR.deb
           mkdir -p artifacts
           mv PR.deb artifacts/
 
-      - name: Upload deb artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: matrix-deb
