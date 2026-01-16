@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-BINARY="usr/local/bin/MATRIX"
+BINARY="usr/local/bin/matrix"
 
 if [ ! -f "$BINARY" ]; then
   echo "Ошибка: бинарник не найден по пути $BINARY"
