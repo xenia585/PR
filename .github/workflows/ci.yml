@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -7,17 +7,12 @@ on:
     branches: ["main"]
 
 jobs:
-  build-and-test:
+  build-test-package:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y g++
 
       - name: Build program
         run: |
@@ -31,14 +26,19 @@ jobs:
           chmod +x testing.sh
           ./testing.sh
 
-      - name: Package deb
+      - name: Install packaging tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev fakeroot
+
+      - name: Build deb package
         run: |
           set -eux
           dpkg-deb --build . PR.deb
           mkdir -p artifacts
           mv PR.deb artifacts/
 
-      - name: Upload artifact
+      - name: Upload deb artifact
         uses: actions/upload-artifact@v4
         with:
           name: PR-deb
@@ -66,3 +66,5 @@ jobs:
       - name: Run Docker container
         run: |
           docker run --rm PR:latest
+
+
