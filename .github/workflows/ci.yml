@@ -61,10 +61,10 @@ jobs:
       - name: Build Docker image
         run: |
           set -eux
-          docker build -t PR:latest .
+          docker build -t pr:latest .
 
       - name: Run Docker container
         run: |
-          docker run --rm PR:latest
+          docker run --rm pr:latest
 
 
