@@ -4,10 +4,10 @@ RUN apt-get update && \
     apt-get install -y build-essential && \
     rm -rf /var/lib/apt/lists/*
 
-COPY PR.deb /tmp/PR.deb
+COPY PR.deb /tmp/pr.deb
 
-RUN dpkg -i /tmp/PR.deb || apt-get install -f -y
+RUN dpkg -i /tmp/pr.deb || apt-get install -f -y
 
 WORKDIR /usr/local/bin
 
-CMD ["PR"]
+CMD ["pr"]

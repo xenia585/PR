@@ -34,14 +34,14 @@ jobs:
       - name: Build deb package
         run: |
           set -eux
-          dpkg-deb --build . PR.deb
+          dpkg-deb --build . pr.deb
           mkdir -p artifacts
           mv PR.deb artifacts/
 
       - name: Upload deb artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PR-deb
+          name: pr-deb
           path: artifacts/
 
   docker-deploy:
@@ -55,7 +55,7 @@ jobs:
       - name: Download deb artifact
         uses: actions/download-artifact@v4
         with:
-          name: PR-deb
+          name: pr-deb
           path: .
 
       - name: Build Docker image
