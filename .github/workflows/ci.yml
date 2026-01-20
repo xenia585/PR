@@ -36,7 +36,7 @@ jobs:
           set -eux
           dpkg-deb --build . pr.deb
           mkdir -p artifacts
-          mv PR.deb artifacts/
+          mv pr.deb artifacts/
 
       - name: Upload deb artifact
         uses: actions/upload-artifact@v4
